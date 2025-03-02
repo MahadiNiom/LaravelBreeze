@@ -56,33 +56,33 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
         //
-        $post = Post::find($id);
+        //$post = Post::find($id);
         return view('post.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
         //
-        $post = Post::find($id);
-        Gate::authorize('edit-post', $post);
+        //$post = Post::find($id);
+        //Gate::authorize('edit-post', $post);
         return view('post.edit',compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
         //
 
-        $post = Post::find($id);
-        Gate::authorize('edit-post', $post);
+        //$post = Post::find($id);
+        //Gate::authorize('edit-post', $post);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
@@ -92,11 +92,11 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
         //
-        $post = Post::find($id);
-        Gate::authorize('edit-post', $post);
+        //$post = Post::find($id);
+        //Gate::authorize('edit-post', $post);
         
         $post->delete();
         return redirect('post');
