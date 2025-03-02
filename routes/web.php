@@ -17,10 +17,10 @@ Route::get('/dashboard', function () {
 Route::get('/post', [PostController::class, 'index'] )->name('post');
 Route::get('/post/create',[PostController::class, 'create'])->middleware('auth');
 Route::get('/post/{id}', [PostController::class, 'show']);
-Route::get('/post/{id}/edit', [PostController::class, 'edit'])->middleware('auth')->can('edit-post, post');
-Route::patch('/post/{id}', [PostController::class, 'update'])->middleware('auth')->can('edit-post, post');
+Route::get('/post/{id}/edit', [PostController::class, 'edit'])->middleware('auth');
+Route::patch('/post/{id}', [PostController::class, 'update'])->middleware('auth');
 Route::post('/post', [PostController::class, 'store'])->name('post.store')->middleware('auth');
-Route::delete('/post/{id}', [PostController::class, 'destroy'])->middleware('auth')->can('edit-post, post');
+Route::delete('/post/{id}', [PostController::class, 'destroy'])->middleware('auth');
 
 
 

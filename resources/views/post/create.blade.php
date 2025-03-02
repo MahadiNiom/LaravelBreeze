@@ -11,11 +11,20 @@
         <input required type="text" name="title" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" placeholder="Enter title">
         
         <label class="block mt-4 mb-2 text-gray-700">Content</label>
-        <textarea required value="" name="content" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" rows="4" placeholder="Enter content"></textarea>
+        <textarea value="" name="content" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" rows="4" placeholder="Enter content"></textarea>
+
+
+        <label class="block mb-2 text-gray-700">Image</label>
+        <input multiple accept="image\*" type="file" name="file" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" placeholder="Enter title">
+        
+        <label class="block mb-2 text-gray-700">Image url(Seperate with comma for multiple url upload)</label>
+        <input multiple type="text" name="path" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" placeholder="Enter title">
         
         <x-primary-button>Submit</x-primary-button>
         </form>
     </div>
+
+    
 <!--    <form action="/post" method="POST">
         @csrf
         <div class="flex grid-cols-10 w-full h-auto">

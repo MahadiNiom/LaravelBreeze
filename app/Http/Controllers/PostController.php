@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Image;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -34,12 +35,21 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+
+
         $user = Auth::user();
         $post = new Post;
+        $images = explode(',', $request->path);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->user_id = $user->id;
         $post->save();
+        foreach($images as $im){
+            $image = new Image;
+            $image->post_id = $post->id;
+            $image->path = $im;
+            $image->save();            
+        }
         return redirect('/post');
     }
 
@@ -60,8 +70,7 @@ class PostController extends Controller
     {
         //
         $post = Post::find($id);
-        //Gate::authorize('edit-post', $post);
-        
+        Gate::authorize('edit-post', $post);
         return view('post.edit',compact('post'));
     }
 
@@ -73,7 +82,7 @@ class PostController extends Controller
         //
 
         $post = Post::find($id);
-        //Gate::authorize('edit-post', $post);
+        Gate::authorize('edit-post', $post);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
@@ -87,7 +96,7 @@ class PostController extends Controller
     {
         //
         $post = Post::find($id);
-        //Gate::authorize('edit-post', $post);
+        Gate::authorize('edit-post', $post);
         
         $post->delete();
         return redirect('post');

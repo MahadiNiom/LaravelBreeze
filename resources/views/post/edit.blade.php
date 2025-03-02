@@ -15,7 +15,7 @@
                 <label for="content">Content</label>
             </div>
             <div class="col-span-8">
-                <input required type="text" name="content" id="content" value="{{$post->content}}">
+                <input  type="text" name="content" id="content" value="{{$post->content}}">
             </div>
             <div class="col-span-2">
                 <x-submit-button>Submit</x-submit-button>
