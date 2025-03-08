@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="flex items-center justify-center">
-    <form action="/post" method="POST" class="bg-white p-6 rounded-lg shadow-lg w-full">
+    <form action="/post" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-lg w-full">
         @csrf
         <h2 class="text-xl font-semibold mb-4">Submit Your Content</h2>
         
@@ -12,11 +12,7 @@
         
         <label class="block mt-4 mb-2 text-gray-700">Content</label>
         <textarea value="" name="content" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" rows="4" placeholder="Enter content"></textarea>
-
-
-        <label class="block mb-2 text-gray-700">Image</label>
-        <input multiple accept="image\*" type="file" name="file" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" placeholder="Enter title">
-        
+   
         <label class="block mb-2 text-gray-700">Image url(Seperate with comma for multiple url upload)</label>
         <input multiple type="text" name="path" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none" placeholder="Enter title">
         

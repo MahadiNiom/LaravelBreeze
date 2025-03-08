@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Image;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,9 +15,14 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
+        $search = $request->search ?? '';
+        if($search!=''){
+            $posts = Post::where('title','like','%'.$search.'%')->orwhere('content', 'like','%'.$search.'%' )->get();
+        }else{
+            $posts = Post::all();
+        }
         return view('post.index', compact('posts'));
     }
 
@@ -71,6 +77,7 @@ class PostController extends Controller
         //
         //$post = Post::find($id);
         //Gate::authorize('edit-post', $post);
+
         return view('post.edit',compact('post'));
     }
 
@@ -86,6 +93,13 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
+        $images = explode(',', $request->path);
+        foreach($images as $im){
+            $image = new Image;
+            $image->post_id = $post->id;
+            $image->path = $im;
+            $image->save();            
+        }
         return view('post.show', compact('post'));
     }
 
@@ -100,5 +114,16 @@ class PostController extends Controller
         
         $post->delete();
         return redirect('post');
+    }
+
+    public function image(Post $post, Image $image)
+    {
+        return view('image.show', compact('image'));
+    }
+
+    public function deleteimage(Post $post, Image $image)
+    {
+        $image->delete();
+        return redirect('post/'.$post->id.'/edit');
     }
 }

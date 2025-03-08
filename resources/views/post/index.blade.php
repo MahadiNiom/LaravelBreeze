@@ -1,6 +1,7 @@
-@extends('dashboard')
+@extends('base')
 
 @section('content')
+
     <div class="w-full bg-yellow-300">
          
         <h1 class=" p-2 text-lg font-semibold mx-auto">Post</h1>
@@ -12,7 +13,7 @@
     @foreach($posts as $post)
     <a href="post/{{$post->id}}">
     <div class="bg-blue-500 w-40 h-60 m-3 rounded-md ">
-        <div class='w-full rounded-t-md h-[70%] bg-red-400'><img class='w-full h-full' src="{{ $post->image[0]->path }}" alt="{{$post->content}}"> </div>
+        <div  class='w-full rounded-t-md h-[70%] bg-red-400'><img class='w-full rounded-t-md h-full' src="{{ $post->image[0]->path}}" alt="{{$post->content}}"> </div>
         <div class=" text-white text-center font-bold">{{$post->title}}</div>
         <div class=" text-white text-center ">Posted by: <span class="text-gray-300"> {{ $post->user->name }}</span></div>
     </div></a>

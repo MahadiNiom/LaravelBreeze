@@ -37,6 +37,7 @@ class ImageController extends Controller
     public function show(Image $image)
     {
         //
+        return view('image.show', compact('image'));
     }
 
     /**

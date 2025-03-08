@@ -22,6 +22,10 @@ Route::patch('/post/{post}', [PostController::class, 'update'])->middleware('aut
 Route::post('/post', [PostController::class, 'store'])->name('post.store')->middleware('auth');
 Route::delete('/post/{post}', [PostController::class, 'destroy'])->middleware('auth')->can('edit-post','post');
 
+Route::get('post/{post}/{image}', [PostController::class, 'image'])->middleware('auth')->can('edit-post','post');
+Route::delete('post/{post}/{image}', [PostController::class, 'deleteimage'])->middleware('auth')->can('edit-post','post');
+
+
 
 
 
