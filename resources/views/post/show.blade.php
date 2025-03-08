@@ -12,7 +12,7 @@
     <div class = "flex justify-center">
         <div class="columns-2 p-2 m-2 rounded-md border border-dashed border-gray-950 border-rounded-md">
             @foreach($post->image as $img)
-                <img class="w-40 p-2 m-2 border-2 border-gray-950" src="{{$img->path}}" alt="none">
+                <a class=" m-2" href="{{$img->path}}"><img class="w-40 p-2 border-2 border-gray-950" src="{{$img->path}}" alt="none"></a>
             @endforeach
         </div>
     </div>
