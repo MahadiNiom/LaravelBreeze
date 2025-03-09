@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -24,6 +26,8 @@ Route::delete('/post/{post}', [PostController::class, 'destroy'])->middleware('a
 
 Route::get('post/{post}/{image}', [PostController::class, 'image'])->middleware('auth')->can('edit-post','post');
 Route::delete('post/{post}/{image}', [PostController::class, 'deleteimage'])->middleware('auth')->can('edit-post','post');
+
+Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
 
 
 

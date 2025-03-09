@@ -16,7 +16,10 @@
                     </x-nav-link>
                 </div>
             </div>
-
+            
+            <div class="  " >
+                @include('layouts.search')
+            </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

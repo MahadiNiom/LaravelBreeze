@@ -23,6 +23,15 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function show(User $user): View
+    {
+        $posts = Post::where('user_id', $user->id)->get();
+        return view('profile.show', [
+            'posts' => $posts,
+            'user' => $user
+        ]);
+    }
+
     /**
      * Update the user's profile information.
      */
